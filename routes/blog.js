@@ -1,16 +1,20 @@
-const MongoConnect = require('../mongo-connect');
+const BlogClass = require('../models/blog-class');
+
 const express = require('express');
+const BlogClass = require('../models/blog-class');
 
 const router = express.Router();
 
-router.get('/articoli', async (req,res) => {
-    //recupero il riferimento alla collezione articoli
-    const articoliCollection = MongoConnect.blogDB.collection('articoli');
-    const articoli = articoliCollection.find({}).limit(3);
+const BlogClass = new BlogClass();
 
-    while (await articoli.hasNext()) {
-        console.log(await articoli.next());
-    }
+router.get('/articoli', async (req,res) => {
+
+    const articoli = await BlogClass.getArticoli(5).BlogClass;
+    articoli.forEach(articolo => {
+        console.log(articolo);
+    });
+
+    res.send();
 })
 
 module.exports = router;
