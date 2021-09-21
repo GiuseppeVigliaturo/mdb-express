@@ -12,6 +12,7 @@ class MongoConnect extends EventEmitter {
         this.mongoClient.connect((err,mongodb) => {
             if(err) throw err;
             console.log("Connessione al database avvenuta!");
+            //aggiungo una proprietà per riferirm al db blog
             MongoConnect.blogDB = mongodb.db('blog');
             this.emit('dbConnection');
         })

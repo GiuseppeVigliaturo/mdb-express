@@ -1,14 +1,16 @@
 const express = require('express');
 const MongoConnect = require('./mongo-connect');
+const routerBlog = require('./routes/blog');
 
 const app = express();
+app.use('/blog', routerBlog);
 
 const mongoConnect = new MongoConnect();
 
 
 //catturo l'evento di connessione e posso quindi creare il listener mettere in ascolto il server
 mongoConnect.on('dbConnection', () => {
-    app.listen(3000,()=> {console.log("server in ascolto sulla porta 3000");})
+    app.listen(3000)
 })
 
 
