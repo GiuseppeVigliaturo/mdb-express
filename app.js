@@ -3,6 +3,7 @@ const MongoConnect = require('./mongo-connect');
 const routerBlog = require('./routes/blog');
 
 const app = express();
+app.set('view engine','ejs');
 app.use('/blog', routerBlog);
 
 const mongoConnect = new MongoConnect();
